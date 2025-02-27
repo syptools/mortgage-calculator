@@ -1,0 +1,380 @@
+/* Base styles and reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --text: #333;
+    --text-light: #6c757d;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --border: #dee2e6;
+    --shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg-light);
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+/* Form Styles */
+.calculator-form {
+    background-color: var(--bg-white);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.calculate-btn {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+.calculate-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.tooltip:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 1.75rem;
+    right: -0.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    width: 15rem;
+    z-index: 10;
+    text-align: center;
+}
+
+/* Results Section */
+.results {
+    background-color: var(--bg-white);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.hidden {
+    display: none;
+}
+
+.summary-box {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--bg-light);
+    border-radius: 0.5rem;
+    border-left: 5px solid var(--secondary);
+}
+
+.payment-amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.payment-breakdown {
+    margin-bottom: 2.5rem;
+}
+
+.breakdown-chart {
+    margin-bottom: 1.5rem;
+    height: 300px;
+}
+
+.summary-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--bg-light);
+    border-radius: 0.5rem;
+}
+
+.detail {
+    flex: 1 1 30%;
+    padding: 0.5rem;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.value {
+    float: right;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.total {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 1.1rem;
+}
+
+/* Amortization Table */
+.amortization-section {
+    margin-top: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.print-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.print-btn:hover {
+    background-color: #1a2530;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .calculator-form,
+    .results {
+        padding: 1.5rem;
+    }
+    
+    .summary-details {
+        flex-direction: column;
+    }
+    
+    .detail {
+        flex: 1 1 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .print-btn {
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .payment-amount {
+        font-size: 2rem;
+    }
+    
+    th, td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: white;
+        font-size: 12pt;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    header h1 {
+        font-size: 18pt;
+    }
+    
+    .calculator-form, 
+    .summary-box,
+    .payment-breakdown,
+    .print-btn,
+    footer {
+        display: none;
+    }
+    
+    .results {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .amortization-section {
+        margin-top: 0;
+    }
+    
+    th {
+        background-color: #eee !important;
+        color: black !important;
+    }
+    
+    th, td {
+        padding: 0.25rem 0.5rem;
+        border: 1px solid #ddd;
+    }
+    
+    .section-header h2 {
+        font-size: 16pt;
+    }
+    
+    table {
+        page-break-inside: auto;
+    }
+    
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    
+    thead {
+        display: table-header-group;
+    }
+}

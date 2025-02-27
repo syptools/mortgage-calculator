@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mortgage Calculator</h1>
+            <p>Calculate your monthly payments and view your amortization schedule</p>
+        </header>
+        
+        <main>
+            <section class="calculator-form">
+                <h2>Loan Information</h2>
+                <form id="mortgage-form">
+                    <div class="form-group">
+                        <label for="loan-amount">Loan Amount ($)</label>
+                        <input type="number" id="loan-amount" min="1000" step="1000" value="250000" required>
+                        <span class="tooltip" data-tooltip="The total amount you wish to borrow">?</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest-rate">Interest Rate (%)</label>
+                        <input type="number" id="interest-rate" min="0.1" max="20" step="0.01" value="4.5" required>
+                        <span class="tooltip" data-tooltip="Annual interest rate for this loan">?</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loan-term">Loan Term</label>
+                        <select id="loan-term" required>
+                            <option value="5">5 years</option>
+                            <option value="10">10 years</option>
+                            <option value="15">15 years</option>
+                            <option value="20">20 years</option>
+                            <option value="25">25 years</option>
+                            <option value="30" selected>30 years</option>
+                        </select>
+                        <span class="tooltip" data-tooltip="Length of time to repay the loan">?</span>
+                    </div>
+                    
+                    <button type="submit" class="calculate-btn">Calculate Payment</button>
+                </form>
+            </section>
+            
+            <section id="results" class="results hidden">
+                <div class="summary-box">
+                    <h2>Monthly Payment</h2>
+                    <div class="payment-amount">$<span id="payment-value">0.00</span></div>
+                </div>
+                
+                <div class="payment-breakdown">
+                    <h2>Payment Breakdown</h2>
+                    <div class="breakdown-chart">
+                        <canvas id="payment-chart"></canvas>
+                    </div>
+                    <div class="summary-details">
+                        <div class="detail">
+                            <span class="label">Principal:</span>
+                            <span class="value" id="total-principal">$0</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Interest:</span>
+                            <span class="value" id="total-interest">$0</span>
+                        </div>
+                        <div class="detail total">
+                            <span class="label">Total Cost:</span>
+                            <span class="value" id="total-cost">$0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="amortization-section">
+                    <div class="section-header">
+                        <h2>Amortization Schedule</h2>
+                        <button id="print-button" class="print-btn">
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                            </svg>
+                            Print Schedule
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table id="amortization-table">
+                            <thead>
+                                <tr>
+                                    <th>Payment #</th>
+                                    <th>Payment Date</th>
+                                    <th>Payment</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Remaining Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="amortization-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>This calculator provides estimates for informational purposes only. Actual loan terms may vary.</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
